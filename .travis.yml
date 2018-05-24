@@ -58,15 +58,14 @@ notifications:
     on_start: false     # default: false
 
 before_deploy:
-  - make build
-  - export FILE_TO_UPLOAD=$(ls build/aptly-*)
+  - make nightly
 
 deploy:
   provider: releases
   api_key:
     - secure: "MMk5S1Im6RrVudZasjtlCJa/rvRp4oavrR86WI2kQszs1iZIcdGyVhHiOGfWTwMjA/3iPdbAdu/WrjxCwI14GC5ws+rs8ICO6JIZktjtAwlfwlrV+nsrCiYx1EThghq43VEcykgz2UAJoJj/egv+UCEpe8yDTsvJ6we5HiXdTw0="
   file_glob: true
-  file: "${FILE_TO_UPLOAD}"
+  file: build/*
   skip_cleanup: true
   on:
     tags: true
