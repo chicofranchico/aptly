@@ -79,4 +79,5 @@ deploy:
     local_dir: build
     on:
       # branch: master
+      all_branches: true
       condition: "$DEPLOY_BINARIES = yes"
