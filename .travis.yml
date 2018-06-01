@@ -61,12 +61,22 @@ before_deploy:
   - make nightly
 
 deploy:
-  provider: releases
-  api_key:
-    - secure: "MMk5S1Im6RrVudZasjtlCJa/rvRp4oavrR86WI2kQszs1iZIcdGyVhHiOGfWTwMjA/3iPdbAdu/WrjxCwI14GC5ws+rs8ICO6JIZktjtAwlfwlrV+nsrCiYx1EThghq43VEcykgz2UAJoJj/egv+UCEpe8yDTsvJ6we5HiXdTw0="
-  file_glob: true
-  file: build/*
-  skip_cleanup: true
-  on:
-    tags: true
-    condition: "$DEPLOY_BINARIES = yes"
+  - provider: releases
+    api_key:
+      - secure: "MMk5S1Im6RrVudZasjtlCJa/rvRp4oavrR86WI2kQszs1iZIcdGyVhHiOGfWTwMjA/3iPdbAdu/WrjxCwI14GC5ws+rs8ICO6JIZktjtAwlfwlrV+nsrCiYx1EThghq43VEcykgz2UAJoJj/egv+UCEpe8yDTsvJ6we5HiXdTw0="
+    file_glob: true
+    file: build/*
+    skip_cleanup: true
+    on:
+      tags: true
+      condition: "$DEPLOY_BINARIES = yes"
+  - provider: s3
+    access_key_id: "AKIAJEW7Y32PKQ32KHCQ"
+    secret_access_key: "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"
+    bucket: aptly-nightly
+    skip_cleanup: true
+    acl: public-read
+    local_dir: build
+    on:
+      # branch: master
+      condition: "$DEPLOY_BINARIES = yes"
