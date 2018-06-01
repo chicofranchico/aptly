@@ -58,7 +58,7 @@ notifications:
     on_start: false     # default: false
 
 before_deploy:
-  - make nightly
+  - make release
 
 deploy:
   - provider: releases
