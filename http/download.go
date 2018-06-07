@@ -36,7 +36,7 @@ type downloaderImpl struct {
 func NewDownloader(downLimit int64, progress aptly.Progress) aptly.Downloader {
 	transport := http.Transport{}
 	transport.Proxy = http.DefaultTransport.(*http.Transport).Proxy
-	transport.ResponseHeaderTimeout = 30 * time.Second
+	transport.ResponseHeaderTimeout = 60 * time.Second
 	transport.TLSHandshakeTimeout = http.DefaultTransport.(*http.Transport).TLSHandshakeTimeout
 	transport.ExpectContinueTimeout = http.DefaultTransport.(*http.Transport).ExpectContinueTimeout
 	transport.DisableCompression = true
